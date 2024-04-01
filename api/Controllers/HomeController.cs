@@ -7,6 +7,7 @@ using api.Dtos.Logs;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace api.Controllers
 {
     [Route("api/home")]
@@ -20,7 +21,7 @@ namespace api.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var logs = _context.Log.ToList()
@@ -28,7 +29,7 @@ namespace api.Controllers
             return Ok(logs);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById/{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
             var log = _context.Log.Find(id);
@@ -40,7 +41,7 @@ namespace api.Controllers
             return Ok(log);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public IActionResult Create([FromBody] CreateLogRequestDto logDto)
         {
             var logModel = logDto.ToLogFromCreateDto();
