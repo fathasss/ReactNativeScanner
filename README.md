@@ -1,2 +1,0 @@
-# ReactNativeScanner
- qr scanner application
