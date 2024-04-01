@@ -15,13 +15,14 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//Configure the CORS 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
         builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-});
+}); 
 
 var app = builder.Build();
 

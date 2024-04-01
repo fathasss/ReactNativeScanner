@@ -30,9 +30,9 @@ export default function App() {
     console.log( JSON.stringify(requestData));
 
     const config: AxiosRequestConfig = {
-      method: 'post',
+      method: 'POST',
       maxBodyLength: Infinity,
-      url: 'http://localhost:5117/api/home',
+      url: 'http://localhost:5117/api/home/Create',
       headers: { 
         'accept': '*/*', 
         'Content-Type': 'application/json'

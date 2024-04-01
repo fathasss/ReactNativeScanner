@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("api/home")]
+    [Route("api/log")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class LogController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
 
-        public HomeController(ApplicationDBContext context)
+        public LogController(ApplicationDBContext context)
         {
             _context = context;
         }
