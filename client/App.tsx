@@ -27,7 +27,7 @@ export default function App() {
       userIp: "192.168.1.1"
     };
 
-    console.log( JSON.stringify(requestData));
+    console.log(JSON.stringify(requestData));
 
     const config: AxiosRequestConfig = {
       method: 'POST',
@@ -40,12 +40,24 @@ export default function App() {
       data: requestData
     };
     
+
+    //Example FreeAPI
+    
+    // const config: AxiosRequestConfig = {
+    //   method: 'GET',
+    //   maxBodyLength: Infinity,
+    //   url: 'https://coffee.alexflipnote.dev/random.json',
+    //   headers: { }
+    // };
+
     axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        alert(JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(error);
+        alert(error);
       });
 
   };
