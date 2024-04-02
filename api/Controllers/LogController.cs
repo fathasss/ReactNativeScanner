@@ -37,7 +37,7 @@ namespace api.Controllers
         [HttpGet("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var log = await _context.Log.FindAsync(id);
+            var log = await _logRepo.GetByIdAsync(id);
 
             if (log == null)
                 return NotFound();
@@ -49,24 +49,17 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateLogRequestDto logDto)
         {
             var logModel = logDto.ToLogFromCreateDto();
-            await _context.Log.AddAsync(logModel);
-            await _context.SaveChangesAsync();
+            await _logRepo.CreateAsync(logModel);
             return CreatedAtAction(nameof(GetById), new { id = logModel.Id }, logModel.ToLogDto());
         }
 
         [HttpPut("Update/{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateLogRequestDto updateLog)
         {
-            var logModel = await _context.Log.FirstOrDefaultAsync(x => x.Id == id);
+            var logModel = await _logRepo.UpdateAsync(id,updateLog);
 
             if (logModel == null)
                 return NotFound();
-
-            logModel.Name = updateLog.Name;
-            logModel.ReadData = updateLog.ReadData;
-            logModel.UserIp = updateLog.UserIp;
-
-            await _context.SaveChangesAsync();
 
             return Ok(logModel.ToLogDto());
         }
@@ -74,13 +67,10 @@ namespace api.Controllers
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var logModel = await _context.Log.FirstOrDefaultAsync(x=>x.Id == id);
+            var logModel = await _logRepo.DeleteAsync(id);
 
             if(logModel == null)
                 return NotFound();
-
-            _context.Log.Remove(logModel);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
