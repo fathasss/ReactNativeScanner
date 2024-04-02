@@ -17,32 +17,26 @@ export default function App() {
 
   const handleBarCodeScanned = async ({ type, data }: { type: string; data: string }) => {
     setScanned(true);
-    const myHeaders: HeadersInit = new Headers();
-    myHeaders.append("accept", "*/*");
-    myHeaders.append("Content-Type", "application/json");
 
-    const requestData = {
-      name: "application_v1",
-      readData: data,
-      userIp: "192.168.1.1"
-    };
-
-    console.log(JSON.stringify(requestData));
+    const requestData = JSON.stringify({
+      "name": "application_v1",
+      "readData": data,
+      "userIp": "192.168.1.1"
+    });
 
     const config: AxiosRequestConfig = {
       method: 'POST',
       maxBodyLength: Infinity,
-      url: 'http://localhost:5117/api/home/Create',
-      headers: { 
-        'accept': '*/*', 
+      url: 'https://localhost:7281/api/log/Create',
+      headers: {
+        'accept': '*/*',
         'Content-Type': 'application/json'
       },
       data: requestData
     };
-    
 
     //Example FreeAPI
-    
+
     // const config: AxiosRequestConfig = {
     //   method: 'GET',
     //   maxBodyLength: Infinity,
@@ -52,12 +46,12 @@ export default function App() {
 
     axios.request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
         alert(JSON.stringify(response.data));
+        console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
-        console.log(error);
         alert(error);
+        console.log(error);
       });
 
   };
