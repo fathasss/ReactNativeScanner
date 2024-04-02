@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos.Logs;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,16 +18,18 @@ namespace api.Controllers
     public class LogController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly ILogRepository _logRepo;
 
-        public LogController(ApplicationDBContext context)
+        public LogController(ApplicationDBContext context,ILogRepository logRepository)
         {
             _context = context;
+            _logRepo = logRepository;
         }
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var logs = await _context.Log.ToListAsync();
+            var logs = await _logRepo.GetAllAsync();
             var logDto = logs.Select(x => x.ToLogDto());
             return Ok(logDto);
         }
