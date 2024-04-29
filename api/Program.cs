@@ -37,6 +37,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<ILogRepository, LogRepository>();
+builder.Services.AddTransient<IEmployeeRepository,EmployeeRepository>();
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
@@ -56,7 +57,7 @@ builder.Services.AddAuthentication("Bearer")
 // SwaggerGen Configuration
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "HasLogger", Version = "v1" });
 
     // JWT Authentication definition
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
