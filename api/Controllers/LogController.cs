@@ -7,6 +7,7 @@ using api.Data;
 using api.Dtos.Logs;
 using api.Interfaces;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace api.Controllers
 {
     [Route("api/log")]
     [ApiController]
+    [Authorize]
     public class LogController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
@@ -34,7 +36,7 @@ namespace api.Controllers
             return Ok(logDto);
         }
 
-        [HttpGet("GetById/{id}")]
+        [HttpPost("GetById/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var log = await _logRepo.GetByIdAsync(id);

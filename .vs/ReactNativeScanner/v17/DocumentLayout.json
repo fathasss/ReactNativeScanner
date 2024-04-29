@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|c:\\users\\fatih\\onedrive\\masa\u00FCst\u00FC\\apps\\reactnativescanner\\api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|solutionrelative:api\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|c:\\users\\fatih\\onedrive\\masa\u00FCst\u00FC\\apps\\reactnativescanner\\api\\helper\\cryptographyhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|solutionrelative:api\\helper\\cryptographyhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|c:\\users\\fatih\\onedrive\\masa\u00FCst\u00FC\\apps\\reactnativescanner\\api\\controllers\\logcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01D44431-FE3B-4F7D-9828-76324E54CC8E}|api\\api.csproj|solutionrelative:api\\controllers\\logcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CryptographyHelper.cs",
+              "DocumentMoniker": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Helper\\CryptographyHelper.cs",
+              "RelativeDocumentMoniker": "api\\Helper\\CryptographyHelper.cs",
+              "ToolTip": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Helper\\CryptographyHelper.cs",
+              "RelativeToolTip": "api\\Helper\\CryptographyHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T15:27:32.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "api\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Services\\AuthService.cs",
+              "RelativeToolTip": "api\\Services\\AuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T15:26:36.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "LogController.cs",
               "DocumentMoniker": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Controllers\\LogController.cs",
               "RelativeDocumentMoniker": "api\\Controllers\\LogController.cs",
               "ToolTip": "C:\\Users\\fatih\\OneDrive\\Masa\u00FCst\u00FC\\Apps\\ReactNativeScanner\\api\\Controllers\\LogController.cs",
               "RelativeToolTip": "api\\Controllers\\LogController.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAC0AAAAJAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T19:35:29.468Z",
               "EditorCaption": ""

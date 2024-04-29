@@ -44,16 +44,17 @@ export default function App() {
     //   headers: { }
     // };
 
+    //java -jar bundletool-all-1.16.0.jar build-apks --bundle=application-e765c56b-cc05-4e74-9d23-45aeab3f9d47.aab --output=scanner.apks --mode=universal
+
     axios.request(config)
       .then((response) => {
         alert(JSON.stringify(response.data));
         console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
-        alert(error);
+        alert(data + " -- > Error : " + error);
         console.log(error);
       });
-
   };
 
   if (hasPermission === null) {

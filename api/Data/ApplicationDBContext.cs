@@ -15,5 +15,7 @@ namespace api.Data
         }
 
         public DbSet<Logger> Log { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
     }
 }
