@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "barcode-scanner",
-    "slug": "barcode-scanner",
+    "name": "mplus-barcodescanner",
+    "slug": "mplus-barcodescanner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
