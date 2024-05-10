@@ -1,40 +1,34 @@
 {
   "expo": {
-    "name": "mplus-barcodescanner",
-    "slug": "mplus-barcodescanner",
+    "name": "MplusLifeScanner",
+    "slug": "mpluslifescanner",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/mlife-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/mlife-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.codemorley.barcodescanner"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/mlife-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.codemorley.barcodescanner"
+      "package": "com.codemarley.MplusBarcodeScanner"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/mlife-logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "6c033a24-e073-41f7-a7b3-4a0ef171b39e"
+        "projectId": "ca7157f9-23cd-40f0-8c8b-2ea322ef4428"
       }
-    },
-    "plugins": [
-      "expo-router"
-    ]
+    }
   }
 }
+

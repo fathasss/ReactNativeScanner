@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Camera, CameraType } from 'expo-camera/legacy';
-import axios, { AxiosRequestConfig } from 'axios';
-import { NetworkInfo } from "react-native-network-info";
-
+import { StyleSheet, Text, Pressable, View, Alert, Platform, TouchableOpacity, Button } from 'react-native';
+import { Camera, CameraView, CameraType } from 'expo-camera';
+import axios from 'axios';
+import ExitApp from 'react-native-exit-app';
 
 interface ReaderScreenProps {
+  navigation: any;
   route: any;
 }
 
-const Reader: React.FC<ReaderScreenProps> = ({ route }) => {
-  const [type, setType] = useState(CameraType.back); //CameraType front or back
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null); // android camera permission
+const Reader: React.FC<ReaderScreenProps> = ({ navigation, route }) => {
+  //const [type, setType] = useState(CameraType.back);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState<boolean>(false);
   const { user } = route.params;
-
+ 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -25,44 +25,15 @@ const Reader: React.FC<ReaderScreenProps> = ({ route }) => {
   const handleBarCodeScanned = async ({ type, data }: { type: string; data: string }) => {
     setScanned(true);
 
-    /*
-    const requestData = {
-      "EmployeeName": user.EmployeeName,
-      "InsDate": new Date().toLocaleString(),
-      "Plate": data,
-      "Route": data,
-      "UserIp": "ReactApp"
-    };
-
-    const config = {
-      method: 'post',
-      url: 'https://mpluslifeapi.cmcplanet.com/api/MobileLogger/LoggerCreate',
-      headers: {
-        accept: 'text/plain',
-        Authorization: `Bearer ${user.AccessToken}`,
-        'Content-Type': 'application/json'
-      },
-      data: requestData
-    };
-
-    console.log(config);
-
-    axios.request(config)
-      .then((response) => {
-        alert(JSON.stringify(response.data));
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        alert(data + " -- > Error : " + error);
-        console.log(error);
-      });
-      */
+    let qrData: string = data;
+    
+    const [dataPlate, dataRoute] = qrData.includes("-") ? qrData.split("-").map(part => part.trim()) : [qrData.trim(), ""];
 
     const requestData = {
       EmployeeName: user.EmployeeName,
       InsDate: '2024-05-10T09:16:17.933Z',
-      Plate: data,
-      Route: data,
+      Plate: dataPlate,
+      Route: dataRoute,
       UserIp: 'ReactApplication'
     };
 
@@ -74,15 +45,21 @@ const Reader: React.FC<ReaderScreenProps> = ({ route }) => {
     };
 
     axios.post('https://mpluslifeapi.cmcplanet.com/api/MobileLogger/LoggerCreate', requestData, config)
-      .then(response => {     
-        //console.log('Response:', response);
-        alert("Kayıt başarılı!");
+      .then(response => {
+        Alert.alert(
+          "Kayıt Başarılı. Uygulama Kapatılacak",
+          "Uygulamayı kapatmak istediğinize emin misiniz?",
+          [
+            { text: "Hayır", onPress: () => console.log("Kapatma iptal edildi"), style: "cancel" },
+            { text: "Evet", onPress: () => { navigation.navigate('Login') }
+            }
+          ],
+          { cancelable: false }
+        );
       })
       .catch(error => {
-        //console.error('Error:', error);
-        alert(data + '-->' + error);
+        alert(data + '-->' + error);      
       });
-
   };
 
   if (hasPermission === null) {
@@ -97,35 +74,20 @@ const Reader: React.FC<ReaderScreenProps> = ({ route }) => {
     );
   }
 
+
   return (
     <View style={[styles.container, { backgroundColor: '#f5f5f5' }]}>
-      <Camera
-        style={[styles.camera, { margin: 20 }]}
-        type={type}
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+      <CameraView
+        onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
+        barcodeScannerSettings={{
+          barcodeTypes: ["qr", "pdf417"],
+        }}
+        style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
-        <TouchableOpacity
-          style={[
-            styles.button,
-            {
-              borderRadius: 10,
-              padding: 10,
-              backgroundColor: '#007aff',
-              marginBottom: 50
-            },
-          ]}
-          onPress={() => setScanned(false)}
-        >
-          <Text
-            style={[
-              styles.buttonText,
-              { color: '#ffffff', fontWeight: 'bold', fontSize: 16 },
-            ]}
-          >
-            Tap to Scan Again
-          </Text>
-        </TouchableOpacity>
+        <Pressable style={styles.button} onPress={()=>setScanned(false)}>
+          <Text style={styles.buttonText}>Tap to Scan Again</Text>
+        </Pressable> 
       )}
     </View>
   );
@@ -141,13 +103,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    backgroundColor: 'blue',
-    padding: 20,
+    backgroundColor: '#007aff',
+    padding: 10,
     alignSelf: 'center',
+    borderRadius: 10,
+    marginBottom: 50,
+    width: 150,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
-    color: 'white',
-    fontSize: 16,
+    color: '#ffffff',
+    fontSize: 15,
+    fontWeight: 'bold',
+
   },
   text: {
     alignSelf: 'center',
