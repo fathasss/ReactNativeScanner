@@ -75,11 +75,11 @@ const Reader: React.FC<ReaderScreenProps> = ({ route }) => {
 
     axios.post('https://mpluslifeapi.cmcplanet.com/api/MobileLogger/LoggerCreate', requestData, config)
       .then(response => {     
-        console.log('Response:', response);
+        //console.log('Response:', response);
         alert("Kayıt başarılı!");
       })
       .catch(error => {
-        console.error('Error:', error);
+        //console.error('Error:', error);
         alert(data + '-->' + error);
       });
 

@@ -49,10 +49,10 @@ const Login: React.FC<LoginScreenProps> = ({ navigation }) => {
         .then((response) => {
           if (navigation && response.data.IsSuccess && response.data.Data !== null) {
             if (response.data.Data.IsAuth) {
-              console.log(response.data.Data.EmployeeName);
-              console.log(response.data.Data.EmployeeCode);
-              console.log(response.data.Data.IsAuth);
-              console.log(response.data.Data.AccessToken);
+              //console.log(response.data.Data.EmployeeName);
+              //console.log(response.data.Data.EmployeeCode);
+              //console.log(response.data.Data.IsAuth);
+              //console.log(response.data.Data.AccessToken);
               const user = response.data.Data;
               setLoading(false);
               navigation.navigate('Reader', { user });
