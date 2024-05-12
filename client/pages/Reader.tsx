@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Pressable, View, Alert, Platform, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, Pressable, View, Alert } from 'react-native';
 import { Camera, CameraView, CameraType } from 'expo-camera';
 import axios from 'axios';
-import ExitApp from 'react-native-exit-app';
 
 interface ReaderScreenProps {
   navigation: any;
@@ -14,7 +13,7 @@ const Reader: React.FC<ReaderScreenProps> = ({ navigation, route }) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState<boolean>(false);
   const { user } = route.params;
- 
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -26,7 +25,7 @@ const Reader: React.FC<ReaderScreenProps> = ({ navigation, route }) => {
     setScanned(true);
 
     let qrData: string = data;
-    
+
     const [dataPlate, dataRoute] = qrData.includes("-") ? qrData.split("-").map(part => part.trim()) : [qrData.trim(), ""];
 
     const requestData = {
@@ -51,14 +50,15 @@ const Reader: React.FC<ReaderScreenProps> = ({ navigation, route }) => {
           "Uygulamayı kapatmak istediğinize emin misiniz?",
           [
             { text: "Hayır", onPress: () => console.log("Kapatma iptal edildi"), style: "cancel" },
-            { text: "Evet", onPress: () => { navigation.navigate('Login') }
+            {
+              text: "Evet", onPress: () => { navigation.navigate('Login') }
             }
           ],
           { cancelable: false }
         );
       })
       .catch(error => {
-        alert(data + '-->' + error);      
+        alert(data + '-->' + error);
       });
   };
 
@@ -85,9 +85,9 @@ const Reader: React.FC<ReaderScreenProps> = ({ navigation, route }) => {
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
-        <Pressable style={styles.button} onPress={()=>setScanned(false)}>
+        <Pressable style={styles.button} onPress={() => setScanned(false)}>
           <Text style={styles.buttonText}>Tap to Scan Again</Text>
-        </Pressable> 
+        </Pressable>
       )}
     </View>
   );
